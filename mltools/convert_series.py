@@ -3,6 +3,7 @@
 """
 
 import click
+import tqdm
 from pathlib import Path
 import numpy as np
 import SimpleITK as sitk
@@ -20,7 +21,7 @@ def main(in_path: Path, out_path: Path):
 
     dirs = np.unique([file.parent for file in in_path.rglob('*.dcm')])
 
-    for dir_path in dirs:
+    for dir_path in tqdm(dirs):
         image = mltools.read_dicom_series(dir_path)
 
         path = str(dir_path) + '.mha'
@@ -29,7 +30,6 @@ def main(in_path: Path, out_path: Path):
             mltools.mkdir(path.parent)
 
         sitk.WriteImage(image, str(path), True)
-        print(dir_path, image.GetPixelIDTypeAsString())
 
     print(f'number of converted series {len(dirs)}')
 
