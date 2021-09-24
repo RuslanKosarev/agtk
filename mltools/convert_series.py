@@ -30,7 +30,7 @@ def main(in_path: Path, out_path: Path):
             path = Path(path.replace(str(in_path), str(out_path)))
             mltools.mkdir(path.parent)
 
-        sitk.WriteImage(image, str(path), useCompression=True)
+        sitk.WriteImage(image=image, fileName=str(path), useCompression=True)
         print(dir_path, image.GetPixelIDTypeAsString())
 
     print(f'number of converted series {len(dirs)}')
