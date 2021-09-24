@@ -21,8 +21,6 @@ def main(in_path: Path, out_path: Path):
     dirs = np.unique([file.parent for file in in_path.rglob('*.dcm')])
 
     for dir_path in dirs:
-        mltools.print_meta_data(dir_path)
-
         image = mltools.read_dicom_series(dir_path)
 
         path = str(dir_path) + '.mha'
