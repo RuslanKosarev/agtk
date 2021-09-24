@@ -18,6 +18,12 @@ def main(in_path: Path, out_path: Path):
     in_path = in_path.expanduser()
     out_path = out_path.expanduser()
 
+    lower_threshold = -1024 + 1
+    upper_threshold = 32767
+
+    outside_value = 0
+    inside_value = 1
+
     dirs = np.unique([file.parent for file in in_path.rglob('*.dcm')])
 
     for dir_path in dirs:
@@ -32,10 +38,10 @@ def main(in_path: Path, out_path: Path):
             mltools.mkdir(path.parent)
 
         threshold = sitk.BinaryThresholdImageFilter()
-        threshold.SetLowerThreshold(-1024 + 1)
-        threshold.SetUpperThreshold(32767)
-        threshold.SetOutsideValue(0)
-        threshold.SetInsideValue(1)
+        threshold.SetLowerThreshold(lower_threshold)
+        threshold.SetUpperThreshold(upper_threshold)
+        threshold.SetOutsideValue(outside_value)
+        threshold.SetInsideValue(inside_value)
         image = threshold.Execute(image)
 
         sitk.WriteImage(image, str(path), useCompression=True)
