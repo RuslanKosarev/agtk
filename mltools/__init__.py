@@ -46,6 +46,7 @@ def read_dicom_series(path: Path, meta_data_on: bool = False):
     https://simpleitk.readthedocs.io/en/master/link_DicomSeriesReadModifyWrite_docs.html
     https://simpleitk.readthedocs.io/en/master/link_DicomImagePrintTags_docs.html
     """
+
     if not path.is_dir():
         raise IOError(f"ERROR: the directory '{path}' does not exist.")
 
