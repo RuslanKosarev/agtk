@@ -3,7 +3,7 @@
 """
 
 import click
-import tqdm
+from tqdm import tqdm
 from pathlib import Path
 import numpy as np
 import SimpleITK as sitk
