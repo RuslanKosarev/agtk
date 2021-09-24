@@ -41,10 +41,26 @@ def read_dicom_series(path: Path):
 
     :param path:
     :return:
+
+    https://simpleitk.readthedocs.io/en/master/link_DicomSeriesReadModifyWrite_docs.html
+    https://simpleitk.readthedocs.io/en/master/link_DicomImagePrintTags_docs.html
     """
+    if not path.is_dir():
+        raise IOError(f"ERROR: the directory '{path}' does not exist.")
+
     reader = sitk.ImageSeriesReader()
+
     dicom_files = reader.GetGDCMSeriesFileNames(str(path))
+    if not dicom_files:
+        raise IOError(f"ERROR: the directory '{path}' does not contain a DICOM series.")
+
     reader.SetFileNames(dicom_files)
     image = reader.Execute()
+
+    reader.MetaDataDictionaryArrayUpdateOn()
+    reader.LoadPrivateTagsOn()
+
+    for key in reader.GetMetaDataKeys(0):
+        image.SetMetaData(key, reader.GetMetaData(0, key))
 
     return image
