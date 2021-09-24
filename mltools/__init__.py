@@ -36,11 +36,11 @@ def print_meta_data(path: Path):
     print(read_meta_data(path))
 
 
-def read_dicom_series(path: Path, read_meta_data: bool = False):
+def read_dicom_series(path: Path, meta_data_on: bool = False):
     """
 
     :param path:
-    :read_meta_data bool:
+    :param meta_data_on:
     :return:
 
     https://simpleitk.readthedocs.io/en/master/link_DicomSeriesReadModifyWrite_docs.html
@@ -58,7 +58,7 @@ def read_dicom_series(path: Path, read_meta_data: bool = False):
     reader.SetFileNames(dicom_files)
     image = reader.Execute()
 
-    if read_meta_data:
+    if meta_data_on:
         reader.MetaDataDictionaryArrayUpdateOn()
         reader.LoadPrivateTagsOn()
 
