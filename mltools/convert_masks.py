@@ -15,7 +15,10 @@ import mltools
               help='input directory for parsing.')
 @click.option('-o', '--out_path', type=Path, default=None,
               help='output directory to save results.')
-def main(in_path: Path, out_path: Path):
+@click.option('-e', '--ext', type=str, default='.mha',
+              help='format to save image.')
+def main(in_path: Path, out_path: Path, ext: str):
+
     in_path = in_path.expanduser()
     out_path = out_path.expanduser()
 
@@ -30,7 +33,7 @@ def main(in_path: Path, out_path: Path):
     for dir_path in tqdm(dirs):
         image = mltools.read_dicom_series(dir_path)
 
-        path = str(dir_path) + '.mha'
+        path = str(dir_path) + ext
         if out_path:
             path = Path(path.replace(str(in_path), str(out_path)))
             mltools.mkdir(path.parent)
