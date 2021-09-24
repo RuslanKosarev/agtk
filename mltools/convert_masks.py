@@ -34,6 +34,7 @@ def main(in_path: Path, out_path: Path, ext: str):
         image = mltools.read_dicom_series(dir_path)
 
         path = str(dir_path) + ext
+
         if out_path:
             path = Path(path.replace(str(in_path), str(out_path)))
             mltools.mkdir(path.parent)
