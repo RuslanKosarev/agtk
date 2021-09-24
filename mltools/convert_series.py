@@ -4,20 +4,21 @@
 
 import click
 from pathlib import Path
+import numpy as np
 import SimpleITK as sitk
 import mltools
 
 
 @click.command()
 @click.option('-i', '--in_path', type=Path, required=True,
-              help='Path for parsing.')
+              help='input directory for parsing.')
 @click.option('-o', '--out_path', type=Path, default=None,
-              help='Path for parsing.')
+              help='output directory to save results.')
 def main(in_path: Path, out_path: Path):
     in_path = in_path.expanduser()
     out_path = out_path.expanduser()
 
-    dirs = set([file.parent for file in in_path.rglob('*.dcm')])
+    dirs = np.unique([file.parent for file in in_path.rglob('*.dcm')])
 
     for dir_path in dirs:
         mltools.print_meta_data(dir_path)

@@ -11,9 +11,9 @@ import mltools
 
 @click.command()
 @click.option('-i', '--in_path', type=Path, required=True,
-              help='Path for parsing.')
+              help='input directory for parsing.')
 @click.option('-o', '--out_path', type=Path, default=None,
-              help='Path for parsing.')
+              help='output directory to save results.')
 def main(in_path: Path, out_path: Path):
     in_path = in_path.expanduser()
     out_path = out_path.expanduser()
