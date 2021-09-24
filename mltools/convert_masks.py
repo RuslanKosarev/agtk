@@ -3,6 +3,7 @@
 """
 
 import click
+from tqdm import tqdm
 from pathlib import Path
 import numpy as np
 import SimpleITK as sitk
@@ -26,11 +27,8 @@ def main(in_path: Path, out_path: Path):
 
     dirs = np.unique([file.parent for file in in_path.rglob('*.dcm')])
 
-    for dir_path in dirs:
-        mltools.print_meta_data(dir_path)
-
+    for dir_path in tqdm(dirs):
         image = mltools.read_dicom_series(dir_path)
-        print(dir_path, image.GetPixelIDTypeAsString())
 
         path = str(dir_path) + '.mha'
         if out_path:
@@ -45,8 +43,6 @@ def main(in_path: Path, out_path: Path):
         image = threshold.Execute(image)
 
         sitk.WriteImage(image, str(path), useCompression=True)
-
-        print(dir_path, image.GetPixelIDTypeAsString())
 
     print(f'number of converted masks {len(dirs)}')
 
