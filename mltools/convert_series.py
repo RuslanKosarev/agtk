@@ -1,0 +1,39 @@
+# coding:utf-8
+""" Training a face classifier.
+"""
+
+import click
+from pathlib import Path
+import SimpleITK as sitk
+import mltools
+
+
+@click.command()
+@click.option('-i', '--in_path', type=Path, required=True,
+              help='Path for parsing.')
+@click.option('-o', '--out_path', type=Path, default=None,
+              help='Path for parsing.')
+def main(in_path: Path, out_path: Path):
+    in_path = in_path.expanduser()
+    out_path = out_path.expanduser()
+
+    dirs = set([file.parent for file in in_path.rglob('*.dcm')])
+
+    for dir_path in dirs:
+        mltools.print_meta_data(dir_path)
+
+        image = mltools.read_dicom_series(dir_path)
+        print(dir_path, image.GetPixelIDTypeAsString())
+
+        path = str(dir_path) + '.mha'
+        if out_path:
+            path = Path(path.replace(str(in_path), str(out_path)))
+            mltools.mkdir(path.parent)
+
+        sitk.WriteImage(image, str(path), useCompression=True)
+
+    print(f'number of converted series {len(dirs)}')
+
+
+if __name__ == '__main__':
+    main()

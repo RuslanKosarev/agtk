@@ -6,8 +6,8 @@ import SimpleITK as sitk
 
 
 def mkdir(dir_path: Path):
-    if not dir_path.parent.exists():
-        dir_path.parent.mkdir(parents=True, exist_ok=True)
+    if not dir_path.exists():
+        dir_path.mkdir(parents=True, exist_ok=True)
 
 
 def read_meta_data(path: Path, *args, **kwargs):
