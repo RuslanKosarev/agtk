@@ -23,7 +23,6 @@ def main(in_path: Path, out_path: Path):
         mltools.print_meta_data(dir_path)
 
         image = mltools.read_dicom_series(dir_path)
-        print(dir_path, image.GetPixelIDTypeAsString())
 
         path = str(dir_path) + '.mha'
         if out_path:
@@ -31,6 +30,7 @@ def main(in_path: Path, out_path: Path):
             mltools.mkdir(path.parent)
 
         sitk.WriteImage(image, str(path), useCompression=True)
+        print(dir_path, image.GetPixelIDTypeAsString())
 
     print(f'number of converted series {len(dirs)}')
 

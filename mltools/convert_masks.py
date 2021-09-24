@@ -31,9 +31,6 @@ def main(in_path: Path, out_path: Path):
             path = Path(path.replace(str(in_path), str(out_path)))
             mltools.mkdir(path.parent)
 
-        nda = sitk.GetArrayFromImage(image)
-        print(nda.min(), nda.max())
-
         threshold = sitk.BinaryThresholdImageFilter()
         threshold.SetLowerThreshold(-1024 + 1)
         threshold.SetUpperThreshold(32767)
@@ -41,10 +38,9 @@ def main(in_path: Path, out_path: Path):
         threshold.SetInsideValue(1)
         image = threshold.Execute(image)
 
-        nda = sitk.GetArrayFromImage(image)
-        print(nda.min(), nda.max())
-
         sitk.WriteImage(image, str(path), useCompression=True)
+
+        print(dir_path, image.GetPixelIDTypeAsString())
 
     print(f'number of converted masks {len(dirs)}')
 
