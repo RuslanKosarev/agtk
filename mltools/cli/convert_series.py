@@ -9,14 +9,16 @@ import numpy as np
 import SimpleITK as sitk
 import mltools
 
+from mltools.config import default_extension
+
 
 @click.command()
 @click.option('-i', '--in_path', type=Path, required=True,
               help='input directory for parsing.')
 @click.option('-o', '--out_path', type=Path, default=None,
               help='output directory to save results.')
-@click.option('-e', '--ext', type=str, default='.mha',
-              help='format to save images.')
+@click.option('-e', '--ext', type=str, default=default_extension,
+              help=f'format to save images, {default_extension} is default.')
 def convert_series(in_path: Path, out_path: Path, ext: str):
 
     in_path = in_path.expanduser()
