@@ -16,7 +16,7 @@ import mltools
 @click.option('-o', '--out_path', type=Path, default=None,
               help='output directory to save results.')
 @click.option('-e', '--ext', type=str, default='.mha',
-              help='format to save image.')
+              help='format to save images.')
 def convert_series(in_path: Path, out_path: Path, ext: str):
 
     in_path = in_path.expanduser()
