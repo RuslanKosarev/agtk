@@ -1,8 +1,13 @@
 [tool.poetry]
-name = "mlutils"
+name = "mltools"
 version = "0.1.0"
 description = ""
-authors = ["korus <ruslan.kosarev@smedx.com>"]
+authors = ["Ruslan Kosarev <ruslan.kosarev@gmail.com>"]
+
+[tool.poetry.scripts]
+"convert_masks" = "mltools.cli.convert_masks:convert_masks"
+"convert_series" = "mltools.cli.convert_masks:convert_series"
+
 
 [tool.poetry.dependencies]
 python = "^3.8"

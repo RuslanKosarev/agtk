@@ -1,5 +1,5 @@
-# coding:utf-8
-""" Training a face classifier.
+# -*- coding: utf-8 -*-
+""" Convert dicom series into 3D images.
 """
 
 import click
@@ -17,7 +17,7 @@ import mltools
               help='output directory to save results.')
 @click.option('-e', '--ext', type=str, default='.mha',
               help='format to save image.')
-def main(in_path: Path, out_path: Path, ext: str):
+def convert_series(in_path: Path, out_path: Path, ext: str):
 
     in_path = in_path.expanduser()
     out_path = out_path.expanduser()
@@ -38,5 +38,5 @@ def main(in_path: Path, out_path: Path, ext: str):
     print(f'number of converted series {len(dirs)}')
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()

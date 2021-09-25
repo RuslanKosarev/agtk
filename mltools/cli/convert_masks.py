@@ -1,5 +1,5 @@
-# coding:utf-8
-""" Training a face classifier.
+# -*- coding: utf-8 -*-
+""" Convert dicom masks into 3D binary images.
 """
 
 import click
@@ -17,7 +17,7 @@ import mltools
               help='output directory to save results.')
 @click.option('-e', '--ext', type=str, default='.mha',
               help='format to save image.')
-def main(in_path: Path, out_path: Path, ext: str):
+def convert_masks(in_path: Path, out_path: Path, ext: str):
 
     in_path = in_path.expanduser()
     out_path = out_path.expanduser()
@@ -50,6 +50,6 @@ def main(in_path: Path, out_path: Path, ext: str):
 
     print(f'number of converted masks {len(dirs)}')
 
-
-if __name__ == '__main__':
-    main()
+#
+# if __name__ == '__main__':
+#     main()
