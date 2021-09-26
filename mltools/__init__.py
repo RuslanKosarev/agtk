@@ -10,19 +10,56 @@ def mkdir(dir_path: Path):
         dir_path.mkdir(parents=True, exist_ok=True)
 
 
-def read_meta_data(path: Path, *args, **kwargs):
+class MetaData:
+    def __init__(self, data):
+        self._data = data
+
+    @property
+    def data(self):
+        return self._data
+
+    def __str__(self):
+        strings = [f'{key}:        {value}' for key, value in self._data.items()]
+
+        return '\n'.join(strings)
+
+
+def read_meta_data(path: Path, default=None, *args, **kwargs):
     """
 
     :param path:
+    :param default:
+    :param args:
+    :param kwargs:
     :return:
     """
 
     if path.is_dir():
-        path = list(path.rglob('*.dcm'))
+        path = list(path.glob('*.dcm'))
         path.sort()
         path = path[0]
 
-    items = dicom.dcmread(path, stop_before_pixels=True, *args, **kwargs)
+    if path.suffix == '.dcm':
+        items = dicom.dcmread(path, stop_before_pixels=True, *args, **kwargs)
+    else:
+        try:
+            reader = sitk.ImageFileReader()
+            reader.SetFileName(str(path))
+            reader.LoadPrivateTagsOn()
+            reader.ReadImageInformation()
+
+            items = {
+                'size': reader.GetSize(),
+                'pixel id': sitk.GetPixelIDValueAsString(reader.GetPixelID()),
+            }
+
+            for key in reader.GetMetaDataKeys():
+                items[key] = reader.GetMetaData(key)
+
+            items = MetaData(items)
+
+        except Exception as e:
+            items = default
 
     return items
 

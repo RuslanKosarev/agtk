@@ -40,5 +40,5 @@ def convert_series(in_path: Path, out_path: Path, ext: str):
     print(f'number of converted series {len(dirs)}')
 
 
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    convert_series()

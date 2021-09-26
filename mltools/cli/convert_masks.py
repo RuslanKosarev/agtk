@@ -52,6 +52,6 @@ def convert_masks(in_path: Path, out_path: Path, ext: str):
 
     print(f'number of converted masks {len(dirs)}')
 
-#
-# if __name__ == '__main__':
-#     main()
+
+if __name__ == '__main__':
+    convert_masks()
