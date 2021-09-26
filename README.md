@@ -1,5 +1,5 @@
 
-## AGTK is the Another Good Toolkit that provides common tools for data processing, machine learning and more.
+##  AGTK is the Another Good Toolkit that provides common tools for data manipulations, data processing, machine learning, and more.
 
 ### Installation 
 
