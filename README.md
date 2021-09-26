@@ -1,8 +1,9 @@
-## mltools
+
+## Installation 
 
 1. Install [poetry](https://python-poetry.org)
 
-2. Clone repository 
+2. Clone repository
 
     $ git clone https://github.com/RuslanKosarev/mltools.git
 
@@ -13,3 +14,10 @@
 4. Run applications
 
     $ poetry run application_name --help
+
+## Dependencies
+
+   python 3.8 \
+   pydicom \
+   SimpleITK
+   
