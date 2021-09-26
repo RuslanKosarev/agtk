@@ -73,7 +73,7 @@ def print_meta_data(path: Path):
     print(read_meta_data(path))
 
 
-def read_dicom_series(path: Path, meta_data_on: bool = False):
+def read_dicom_series(path: Path, meta_data_on: bool = True):
     """
 
     :param path:
@@ -94,12 +94,11 @@ def read_dicom_series(path: Path, meta_data_on: bool = False):
         raise IOError(f"ERROR: the directory '{path}' does not contain a DICOM series.")
 
     reader.SetFileNames(dicom_files)
+    reader.MetaDataDictionaryArrayUpdateOn()
+    reader.LoadPrivateTagsOn()
     image = reader.Execute()
 
     if meta_data_on:
-        reader.MetaDataDictionaryArrayUpdateOn()
-        reader.LoadPrivateTagsOn()
-
         for key in reader.GetMetaDataKeys(0):
             image.SetMetaData(key, reader.GetMetaData(0, key))
 

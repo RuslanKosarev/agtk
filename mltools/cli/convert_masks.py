@@ -46,9 +46,12 @@ def convert_masks(in_path: Path, out_path: Path, ext: str):
         threshold.SetUpperThreshold(upper_threshold)
         threshold.SetOutsideValue(outside_value)
         threshold.SetInsideValue(inside_value)
-        image = threshold.Execute(image)
+        processed_image = threshold.Execute(image)
 
-        sitk.WriteImage(image, str(path), useCompression=True)
+        for key in image.GetMetaDataKeys():
+            processed_image.SetMetaData(key, image.GetMetaData(key))
+
+        sitk.WriteImage(processed_image, str(path), useCompression=True)
 
     print(f'number of converted masks {len(dirs)}')
 
