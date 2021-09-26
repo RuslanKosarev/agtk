@@ -1,7 +1,7 @@
 
 ## AGTK is the Another Good Toolkit that provides common tools for data processing, machine learning and more.
 
-## Installation 
+### Installation 
 
 1. Install [poetry](https://python-poetry.org)
 
@@ -20,9 +20,9 @@
 6. Run application \
     $ poetry run application_name --help
 
-## Available CLI [applications](https://github.com/RuslanKosarev/agtk/tree/main/agtk/cli) of the project
+### Available CLI [applications](https://github.com/RuslanKosarev/agtk/tree/main/agtk/cli) of the project
 
-## Dependencies
+### Dependencies
 
    python 3.8 \
    pydicom \
