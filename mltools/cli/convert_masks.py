@@ -51,7 +51,7 @@ def convert_masks(in_path: Path, out_path: Path, ext: str):
         for key in image.GetMetaDataKeys():
             processed_image.SetMetaData(key, image.GetMetaData(key))
 
-        sitk.WriteImage(processed_image, str(path), useCompression=True)
+        sitk.WriteImage(processed_image, str(path), True)
 
     print(f'number of converted masks {len(dirs)}')
 
