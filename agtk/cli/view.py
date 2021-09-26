@@ -6,7 +6,7 @@ import click
 from pathlib import Path
 import numpy as np
 
-from mltools import dataset
+from agtk import dataset
 
 
 @click.command()

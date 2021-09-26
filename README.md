@@ -20,7 +20,7 @@
 6. Run applications \
     $ poetry run script_name --help
 
-## Available CLI [scripts](https://github.com/RuslanKosarev/mltools/tree/main/mltools/cli) of the project
+## Available CLI [scripts](https://github.com/RuslanKosarev/agtk/tree/main/mltools/cli) of the project
 
 ## Dependencies
 

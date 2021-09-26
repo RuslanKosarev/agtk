@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "mltools"
+name = "agtk"
 version = "0.1.0"
 description = ""
 authors = ["korus <ruslan.kosarev@gmail.com>"]
 
 [tool.poetry.scripts]
-"view" = "mltools.cli.view:view"
-"convert_masks" = "mltools.cli.convert_masks:convert_masks"
-"convert_series" = "mltools.cli.convert_masks:convert_series"
+"view" = "agtk.cli.view:view"
+"convert_masks" = "agtk.cli.convert_masks:convert_masks"
+"convert_series" = "agtk.cli.convert_series:convert_series"
 
 [tool.poetry.dependencies]
 python = "^3.8"

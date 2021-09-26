@@ -8,8 +8,8 @@ from pathlib import Path
 import numpy as np
 import SimpleITK as sitk
 
-from mltools.config import default_extension
-from mltools import dataset
+from agtk.config import default_extension
+from agtk import dataset
 
 
 @click.command()
