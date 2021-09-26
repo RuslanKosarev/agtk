@@ -6,10 +6,10 @@
 
     $ git clone https://github.com/RuslanKosarev/mltools.git
 
-3. create environment
+3. Create environment with poetry
 
     $ poetry install 
 
-4. run applications
+4. Run applications
 
     $ poetry run application_name --help
