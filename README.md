@@ -12,7 +12,10 @@
 4. Create environment with poetry \
     $ poetry install 
 
-5. Run applications \
+5. Path to created project environment \
+    $ poetry env info --path
+
+6. Run applications \
     $ poetry run application_name --help
 
 ## Dependencies
