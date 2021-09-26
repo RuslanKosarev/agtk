@@ -3,16 +3,16 @@
 
 1. Install [poetry](https://python-poetry.org)
 
-2. Clone repository
-
+2. Clone repository \
     $ git clone https://github.com/RuslanKosarev/mltools.git
 
-3. Create environment with poetry
+3. Change working directory \
+    $ cd mltools
 
+4. Create environment with poetry \
     $ poetry install 
 
-4. Run applications
-
+5. Run applications \
     $ poetry run application_name --help
 
 ## Dependencies
