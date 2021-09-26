@@ -6,7 +6,7 @@
 1. Install [poetry](https://python-poetry.org)
 
 2. Clone repository \
-    $ git clone https://github.com/RuslanKosarev/mltools.git
+    $ git clone https://github.com/RuslanKosarev/agtk.git
 
 3. Change working directory \
     $ cd mltools
@@ -20,7 +20,7 @@
 6. Run applications \
     $ poetry run script_name --help
 
-## Available CLI [scripts](https://github.com/RuslanKosarev/agtk/tree/main/mltools/cli) of the project
+## Available CLI [scripts](https://github.com/RuslanKosarev/agtk/tree/main/agtk/cli) of the project
 
 ## Dependencies
 
