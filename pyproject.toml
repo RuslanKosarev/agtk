@@ -5,14 +5,13 @@ description = ""
 authors = ["Ruslan Kosarev <ruslan.kosarev@gmail.com>"]
 
 [tool.poetry.scripts]
+"view" = "mltools.cli.view:view"
 "convert_masks" = "mltools.cli.convert_masks:convert_masks"
 "convert_series" = "mltools.cli.convert_masks:convert_series"
-"view" = "mltools.cli.view:view"
 
 
 [tool.poetry.dependencies]
-python = "^3.6"
-numpy = "^1.19.5"
+python = "^3.8"
 click = "^8.0.1"
 pydicom = "^2.2.1"
 SimpleITK = "^2.1.1"
