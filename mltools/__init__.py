@@ -49,8 +49,10 @@ def read_meta_data(path: Path, default=None, *args, **kwargs):
             reader.ReadImageInformation()
 
             items = {
-                'size': reader.GetSize(),
                 'pixel id': sitk.GetPixelIDValueAsString(reader.GetPixelID()),
+                'image size': reader.GetSize(),
+                'number of components': reader.GetNumberOfComponents(),
+                'pixel spacing': reader.GetSpacing(),
             }
 
             for key in reader.GetMetaDataKeys():
