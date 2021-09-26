@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
-""" Convert dicom series into 3D images.
+""" Read and print meta data.
 """
 
 import click
-from tqdm import tqdm
 from pathlib import Path
 import numpy as np
-import SimpleITK as sitk
-import mltools
 
-from mltools.config import default_extension
+from mltools import dataset
 
 
 @click.command()
@@ -29,7 +26,7 @@ def view(path: Path):
         paths = np.unique(paths)
 
     for path in paths:
-        image = mltools.read_meta_data(path)
+        image = dataset.read_meta_data(path)
 
         print('=================================================')
         print(path)

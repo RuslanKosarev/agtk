@@ -7,9 +7,9 @@ from tqdm import tqdm
 from pathlib import Path
 import numpy as np
 import SimpleITK as sitk
-import mltools
 
 from mltools.config import default_extension
+from mltools import dataset
 
 
 @click.command()
@@ -33,13 +33,13 @@ def convert_masks(in_path: Path, out_path: Path, ext: str):
     dirs = np.unique([file.parent for file in in_path.rglob('*.dcm')])
 
     for dir_path in tqdm(dirs):
-        image = mltools.read_dicom_series(dir_path)
+        image = dataset.read_dicom_series(dir_path)
 
         path = str(dir_path) + ext
 
         if out_path:
             path = Path(path.replace(str(in_path), str(out_path)))
-            mltools.mkdir(path.parent)
+            dataset.mkdir(path.parent)
 
         threshold = sitk.BinaryThresholdImageFilter()
         threshold.SetLowerThreshold(lower_threshold)
