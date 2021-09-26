@@ -18,6 +18,8 @@
 6. Run applications \
     $ poetry run application_name --help
 
+[Available CLI scripts of the project](https://github.com/RuslanKosarev/mltools/blob/main/pyproject.toml#L7)
+
 ## Dependencies
 
    python 3.8 \
