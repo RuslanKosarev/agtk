@@ -9,7 +9,7 @@
     $ git clone https://github.com/RuslanKosarev/agtk.git
 
 3. Change working directory \
-    $ cd mltools
+    $ cd agtk
 
 4. Create environment with poetry \
     $ poetry install 
