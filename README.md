@@ -17,10 +17,10 @@
 5. Path to created project environment \
     $ poetry env info --path
 
-6. Run applications \
-    $ poetry run script_name --help
+6. Run application \
+    $ poetry run application_name --help
 
-## Available CLI [scripts](https://github.com/RuslanKosarev/agtk/tree/main/agtk/cli) of the project
+## Available CLI [applications](https://github.com/RuslanKosarev/agtk/tree/main/agtk/cli) of the project
 
 ## Dependencies
 
