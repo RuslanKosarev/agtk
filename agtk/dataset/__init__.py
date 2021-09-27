@@ -1,8 +1,11 @@
 # coding:utf-8
 
+from typing import Union
 from pathlib import Path
 import pydicom as dicom
 import SimpleITK as sitk
+
+PathType = Union[str, Path]
 
 
 def mkdir(dir_path: Path):
@@ -24,7 +27,7 @@ class MetaData:
         return '\n'.join(strings)
 
 
-def read_meta_data(path: Path, default=None, *args, **kwargs):
+def read_meta_data(path: PathType, default=None, *args, **kwargs):
     """
 
     :param path:
