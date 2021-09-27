@@ -11,7 +11,7 @@ from agtk import dataset
 
 @click.command()
 @click.option('-p', '--path', type=Path, required=True,
-              help='path to file or directory to print meta data.')
+              help='Path to file or directory to print meta data.')
 def view(path: Path):
 
     path = path.expanduser()

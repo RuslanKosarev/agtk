@@ -14,11 +14,11 @@ from agtk import dataset
 
 @click.command()
 @click.option('-i', '--in_path', type=Path, required=True,
-              help='input directory for parsing.')
+              help='Input directory for parsing.')
 @click.option('-o', '--out_path', type=Path, default=None,
-              help='output directory to save results.')
+              help='Output directory to save images.')
 @click.option('-e', '--ext', type=str, default=default_extension,
-              help=f'format to save images, {default_extension} is default.')
+              help=f'Format to save images, {default_extension} is default.')
 def convert_series(in_path: Path, out_path: Path, ext: str):
 
     in_path = in_path.expanduser()
