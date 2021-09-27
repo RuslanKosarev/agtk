@@ -26,11 +26,11 @@ def view(path: Path):
         paths = np.unique(paths)
 
     for path in paths:
-        image = dataset.read_meta_data(path)
+        data = dataset.read_meta_data(path)
 
         print('=================================================')
         print(path)
-        print(image)
+        print(data)
 
 
 if __name__ == '__main__':
