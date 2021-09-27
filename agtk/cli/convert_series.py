@@ -8,7 +8,7 @@ from pathlib import Path
 import numpy as np
 import SimpleITK as sitk
 
-from agtk.config import default_extension
+from agtk.dataset.config import default_extension
 from agtk import dataset
 
 
