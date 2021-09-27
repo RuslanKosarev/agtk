@@ -22,6 +22,9 @@ from agtk import dataset
 def convert_series(in_path: Path, out_path: Path, ext: str):
 
     in_path = in_path.expanduser()
+
+    if out_path is None:
+        out_path = Path(f'{in_path}3D{ext[1:]}')
     out_path = out_path.expanduser()
 
     dirs = np.unique([file.parent for file in in_path.rglob('*.dcm')])
@@ -30,10 +33,8 @@ def convert_series(in_path: Path, out_path: Path, ext: str):
         image = dataset.read_dicom_series(dir_path)
 
         path = str(dir_path) + ext
-
-        if out_path:
-            path = Path(path.replace(str(in_path), str(out_path)))
-            dataset.mkdir(path.parent)
+        path = Path(path.replace(str(in_path), str(out_path)))
+        dataset.mkdir(path.parent)
 
         sitk.WriteImage(image, str(path), True)
 
