@@ -8,6 +8,7 @@ authors = ["korus <ruslan.kosarev@gmail.com>"]
 "view" = "agtk.cli.view:view"
 "convert_masks" = "agtk.cli.convert_masks:convert_masks"
 "convert_series" = "agtk.cli.convert_series:convert_series"
+"convert_numpy" = "agtk.cli.convert_numpy:convert_numpy"
 
 [tool.poetry.dependencies]
 python = "^3.6"

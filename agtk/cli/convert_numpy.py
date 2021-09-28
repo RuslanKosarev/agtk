@@ -19,7 +19,7 @@ from agtk import dataset
               help='Output directory to save images.')
 @click.option('-e', '--ext', type=str, default=default_extension,
               help=f'Format to save images, {default_extension} is default.')
-def convert_series(in_path: Path, out_path: Path, ext: str):
+def convert_numpy(in_path: Path, out_path: Path, ext: str):
 
     in_path = in_path.expanduser()
 
@@ -55,4 +55,4 @@ def convert_series(in_path: Path, out_path: Path, ext: str):
 
 
 if __name__ == '__main__':
-    convert_series()
+    convert_numpy()
