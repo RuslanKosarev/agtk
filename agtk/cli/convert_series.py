@@ -5,11 +5,14 @@
 import click
 from tqdm import tqdm
 from pathlib import Path
+from loguru import logger
+
 import numpy as np
 import SimpleITK as sitk
 
-from agtk.dataset.config import default_extension
+from agtk import logging
 from agtk import dataset
+from agtk.dataset.config import default_extension
 
 
 @click.command()
@@ -27,6 +30,9 @@ def convert_series(in_path: Path, out_path: Path, ext: str):
         out_path = Path(f'{in_path}3D{ext[1:]}')
     out_path = out_path.expanduser()
 
+    logging.configure_logging(out_path)
+    logger.info('Input directory for parsing {in_path}.', in_path=in_path)
+
     dirs = np.unique([file.parent for file in in_path.rglob('*.dcm')])
 
     for dir_path in tqdm(dirs):
@@ -38,7 +44,8 @@ def convert_series(in_path: Path, out_path: Path, ext: str):
 
         sitk.WriteImage(image, str(path), True)
 
-    print(f'number of converted series {len(dirs)}')
+    logger.info("Directory with saved images {out_path}.", out_path=out_path)
+    logger.info("Number of converted series {num_dirs}.", num_dirs=len(dirs))
 
 
 if __name__ == '__main__':

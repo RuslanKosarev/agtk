@@ -5,11 +5,14 @@
 import click
 from tqdm import tqdm
 from pathlib import Path
+from loguru import logger
+
 import numpy as np
 import SimpleITK as sitk
 
-from agtk.dataset.config import default_extension
+from agtk import logging
 from agtk import dataset
+from agtk.dataset.config import default_extension
 
 
 @click.command()
@@ -26,6 +29,9 @@ def convert_masks(in_path: Path, out_path: Path, ext: str):
     if out_path is None:
         out_path = Path(f'{in_path}3D{ext[1:]}')
     out_path = out_path.expanduser()
+
+    logging.configure_logging(out_path)
+    logger.info('Input directory for parsing {in_path}.', in_path=in_path)
 
     lower_threshold = -1024 + 1
     upper_threshold = 32767
@@ -54,7 +60,8 @@ def convert_masks(in_path: Path, out_path: Path, ext: str):
 
         sitk.WriteImage(processed_image, str(path), True)
 
-    print(f'number of converted masks {len(dirs)}')
+    logger.info("Directory with saved images {out_path}.", out_path=out_path)
+    logger.info("Number of converted masks {num_dirs}.", num_dirs=len(dirs))
 
 
 if __name__ == '__main__':
