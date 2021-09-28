@@ -5,11 +5,14 @@
 import click
 from tqdm import tqdm
 from pathlib import Path
+from loguru import logger
+
 import numpy as np
 import SimpleITK as sitk
 
-from agtk.dataset.config import default_extension
+from agtk import logging
 from agtk import dataset
+from agtk.dataset.config import default_extension
 
 
 @click.command()
@@ -27,6 +30,9 @@ def convert_numpy(in_path: Path, out_path: Path, ext: str):
         out_path = Path(f'{in_path}3D{ext[1:]}')
     out_path = out_path.expanduser()
 
+    logging.configure_logging(out_path)
+    logger.info('Input directory for parsing {in_path}.', in_path=in_path)
+
     dirs = np.unique([file.parent for file in in_path.rglob('*.npy')])
 
     for dir_path in dirs:
@@ -38,11 +44,12 @@ def convert_numpy(in_path: Path, out_path: Path, ext: str):
             slices = [np.load(file) for file in files]
 
             mask = np.stack(slices, axis=0)
-            print(dir_path, f'[{np.min(mask)}, {np.max(mask)}]')
-            mask = sitk.GetImageFromArray(mask)
+            min_val = np.min(mask)
+            max_val = np.max(mask)
 
             image = dataset.read_dicom_series(image_path)
 
+            mask = sitk.GetImageFromArray(mask)
             mask.CopyInformation(image)
 
             path = str(dir_path) + ext
@@ -50,6 +57,8 @@ def convert_numpy(in_path: Path, out_path: Path, ext: str):
             dataset.mkdir(path.parent)
 
             sitk.WriteImage(mask, str(path), True)
+
+            logger.info('{path} [{min_val}, {max_val}]', path=path, min_val=min_val, max_val=max_val)
 
     print(f'number of converted series {len(dirs)}')
 
