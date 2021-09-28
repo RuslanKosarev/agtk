@@ -5,6 +5,8 @@
 import click
 from tqdm import tqdm
 from pathlib import Path
+from loguru import logger
+
 import numpy as np
 import SimpleITK as sitk
 
@@ -54,7 +56,8 @@ def convert_masks(in_path: Path, out_path: Path, ext: str):
 
         sitk.WriteImage(processed_image, str(path), True)
 
-    print(f'number of converted masks {len(dirs)}')
+    logger.info("Directory with saved images {out_path}.", out_path=out_path)
+    logger.info("Number of converted masks {num_dirs}.", num_dirs=len(dirs))
 
 
 if __name__ == '__main__':
