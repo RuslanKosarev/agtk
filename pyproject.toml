@@ -10,12 +10,12 @@ authors = ["korus <ruslan.kosarev@gmail.com>"]
 "convert_series" = "agtk.cli.convert_series:convert_series"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.6"
 tqdm = "^4.62.3"
 click = "^8.0.1"
 pydicom = "^2.2.1"
 SimpleITK = "^2.1.1"
-numpy = "1.21.1"
+numpy = "1.19.5"
 
 [tool.poetry.dev-dependencies]
 
