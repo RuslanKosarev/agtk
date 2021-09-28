@@ -33,6 +33,8 @@ def convert_numpy(in_path: Path, out_path: Path, ext: str):
     logging.configure_logging(out_path)
     logger.info('Input directory for parsing {in_path}.', in_path=in_path)
 
+    labels = [1, 2, 3, 4]
+
     dirs = np.unique([file.parent for file in in_path.rglob('*.npy')])
 
     for dir_path in dirs:
@@ -44,8 +46,7 @@ def convert_numpy(in_path: Path, out_path: Path, ext: str):
             slices = [np.load(file) for file in files]
 
             mask = np.stack(slices, axis=0)
-            min_val = np.min(mask)
-            max_val = np.max(mask)
+            hist, _ = np.histogram(mask[:], bins=[0.5, 1.5, 2.5, 3.5, 4.5])
 
             image = dataset.read_dicom_series(image_path)
 
@@ -58,7 +59,9 @@ def convert_numpy(in_path: Path, out_path: Path, ext: str):
 
             sitk.WriteImage(mask, str(path), True)
 
-            logger.info('{path} [{min_val}, {max_val}]', path=path, min_val=min_val, max_val=max_val)
+            logger.info('{path}', path=path)
+            for label, value in zip(labels, hist):
+                logger.info('{label}: {value}', label=label, value=value > 0)
 
     print(f'number of converted series {len(dirs)}')
 
