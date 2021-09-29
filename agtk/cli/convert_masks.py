@@ -20,9 +20,19 @@ from agtk.dataset.config import default_extension
               help='Input directory for parsing.')
 @click.option('-o', '--out_path', type=Path, default=None,
               help='Output directory to save images.')
+@click.option('-b', '--background', type=int, default=0,
+              help='Background value for saved mask.')
+@click.option('-f', '--foreground', type=int, default=1,
+              help='Foreground value for saved mask.')
 @click.option('-e', '--ext', type=str, default=default_extension,
               help=f'Format to save images, {default_extension} is default.')
-def convert_masks(in_path: Path, out_path: Path, ext: str):
+def convert_masks(
+        in_path: Path,
+        out_path: Path,
+        background: int,
+        foreground: int,
+        ext: str
+    ):
 
     in_path = in_path.expanduser()
 
@@ -36,9 +46,6 @@ def convert_masks(in_path: Path, out_path: Path, ext: str):
     lower_threshold = -1024 + 1
     upper_threshold = 32767
 
-    outside_value = 0
-    inside_value = 1
-
     dirs = np.unique([file.parent for file in in_path.rglob('*.dcm')])
 
     for dir_path in tqdm(dirs):
@@ -51,8 +58,8 @@ def convert_masks(in_path: Path, out_path: Path, ext: str):
         threshold = sitk.BinaryThresholdImageFilter()
         threshold.SetLowerThreshold(lower_threshold)
         threshold.SetUpperThreshold(upper_threshold)
-        threshold.SetOutsideValue(outside_value)
-        threshold.SetInsideValue(inside_value)
+        threshold.SetOutsideValue(background)
+        threshold.SetInsideValue(foreground)
         processed_image = threshold.Execute(image)
 
         for key in image.GetMetaDataKeys():
