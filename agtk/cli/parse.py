@@ -15,13 +15,14 @@ from agtk import dataset
 def parse(path: Path):
 
     in_path = path.expanduser()
+    dirs = list(in_path.glob('*'))
 
     paths = list(in_path.rglob('*'))
     paths.sort()
 
     for path in paths:
-        if path in in_path.glob('*'):
-            print('\n')
+        if path in dirs:
+            print()
         print(path)
 
 
