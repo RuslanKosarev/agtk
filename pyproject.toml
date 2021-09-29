@@ -6,7 +6,7 @@ authors = ["korus <ruslan.kosarev@gmail.com>"]
 
 [tool.poetry.scripts]
 "view" = "agtk.cli.view:view"
-"parse" = "agtk.cli.parse:pars"
+"parse" = "agtk.cli.parse:parse"
 "convert_masks" = "agtk.cli.convert_masks:convert_masks"
 "convert_series" = "agtk.cli.convert_series:convert_series"
 
