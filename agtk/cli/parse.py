@@ -4,9 +4,6 @@
 
 import click
 from pathlib import Path
-import numpy as np
-
-from agtk import dataset
 
 
 @click.command()
