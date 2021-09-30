@@ -9,6 +9,7 @@ authors = ["korus <ruslan.kosarev@gmail.com>"]
 "parse" = "agtk.cli.parse:parse"
 "convert_masks" = "agtk.cli.convert_masks:convert_masks"
 "convert_series" = "agtk.cli.convert_series:convert_series"
+"extract_slices" = "agtk.cli.extract_slices:extract_slices"
 
 [tool.poetry.dependencies]
 python = "^3.6"
