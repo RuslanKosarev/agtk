@@ -27,8 +27,8 @@ def extract_slices(
     out_path = out_path.expanduser()
 
     logging.configure_logging(out_path)
-    logger.info('Input directory for parsing {in_path}.', in_path=in_path)
-    logger.info("Output directory to save images {out_path}.", out_path=out_path)
+    logger.info('Input directory with 3D images {in_path}.', in_path=in_path)
+    logger.info("Output directory to save 2D images {out_path}.", out_path=out_path)
 
     files = [file for file in in_path.rglob('*') if file.is_file()]
     count = 0
