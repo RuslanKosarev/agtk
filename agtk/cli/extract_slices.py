@@ -28,6 +28,7 @@ def extract_slices(
 
     logging.configure_logging(out_path)
     logger.info('Input directory for parsing {in_path}.', in_path=in_path)
+    logger.info("Output directory to save images {out_path}.", out_path=out_path)
 
     files = [file for file in in_path.rglob('*') if file.is_file()]
     count = 0
@@ -48,7 +49,6 @@ def extract_slices(
                 slice2d = image[:, :, idx]
                 sitk.WriteImage(slice2d, str(path / f'{idx + 1:03d}{file.suffix}'), True)
 
-    logger.info("Directory with saved images {out_path}.", out_path=out_path)
     logger.info("Number of converted files {count}.", count=count)
 
 
